@@ -1,0 +1,18 @@
+---
+title: "hesjson test"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# `hexjson` Test
+
+```{r}
+library(jsonlite)
+library(hexjsonwidget)
+jj=fromJSON('./example.hexjson')
+hexjsonwidget(jj)
+```
+
