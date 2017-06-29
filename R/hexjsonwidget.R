@@ -1,14 +1,37 @@
-#' <Add Title>
+#' An htmlwidget for rendering hexjson maps using d3-hexjson
 #'
-#' <Add Description>
+#' \code{hexjsonwidget} accepts a hexJSON object or path to a hexjson file and render it as an HTMLwidget using d3-hexjson.
+#' 
+#' @name hexjsonwidget
+#' @docType package
+#' @author Tony Hirst (@@psychemedia)
 #'
 #' @import htmlwidgets
+#' @import jsonlite
 #'
+#' @param jsondata hexJSON object
+#' @param jsonpath Path to hexJSON file
+#' @param grid Display a background grid in whitespace (either \code{on} or \code{off} (default)).
+#' @param col_hexfill Fill colour for data hex if "col" hex value not set
+#' @param col_gridfill Fill colour for grid hex 
+#' @param col_textfill Fill colour for hex text label
+#' @param width 
+#' @param height
+#' @param elementId 
+#' 
 #' @export
-hexjsonwidget <- function(jsondata, grid='off',
+hexjsonwidget <- function(jsondata=NA, jsonpath=NA, grid='off',
                           col_hexfill='', col_gridfill='', col_textfill='',
                           width = NULL, height = NULL, elementId = NULL) {
 
+  if (identical(jsondata, NA)) {
+    if  (identical(jsonpath, NA)) {
+      stop("Either 'jsondata' or 'jsonpath' must be set")
+    } else {
+      jsondata=fromJSON(jsonpath)
+    }
+  }
+  
   # forward options using x
   x = list(
     jsondata = jsondata,
