@@ -18,7 +18,9 @@ HTMLWidgets.widget({
         		.attr("height", height + margin.top + margin.bottom)
         		.append("g")
         		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
+        		
+    var hexbinding="g"
+    
     return {
 
       renderValue: function(x) {
@@ -27,10 +29,39 @@ HTMLWidgets.widget({
 
         	// Render the hexes
         	var hexes = d3.renderHexJSON(hexjson, width, height);
-         console.log(hexes);
+
+          if (x.grid == "on") {
+            
+            hexbinding="g.data"
+            
+            // Create the grid hexes and render them
+          	var grid = d3.getGridForHexJSON(hexjson);
+          	var gridHexes = d3.renderHexJSON(grid, width, height);
+            
+          	// Draw the background grid BEFORE the data
+          
+          	// Bind the grid hexes to g.grid elements of the svg and position them
+          	var hexgrid = svg
+          		.selectAll("g.grid")
+          		.data(gridHexes)
+          		.enter()
+          		.append("g")
+          		.attr("transform", function(hex) {
+          			return "translate(" + hex.x + "," + hex.y + ")";
+          		});
+          
+          	// Draw the polygons around each grid hex's centre
+          	hexgrid
+          		.append("polygon")
+          		.attr("points", function(hex) {return hex.points;})
+          		.attr("stroke", "#b0b0b0")
+          		.attr("stroke-width", "1")
+          		.attr("fill", "#f0f0f0");
+          }
+
         	// Bind the hexes to g elements of the svg and position them
         	var hexmap = svg
-        		.selectAll("g")
+        		.selectAll(hexbinding)
         		.data(hexes)
         		.enter()
         		.append("g")
@@ -60,7 +91,6 @@ HTMLWidgets.widget({
         // TODO: code to re-render the widget with a new size
 
       }
-
     };
   }
 });

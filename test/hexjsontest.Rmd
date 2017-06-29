@@ -1,6 +1,10 @@
 ---
-title: "hesjson test"
-output: html_document
+title: "hexjson test"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+always_allow_html: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -14,5 +18,46 @@ library(jsonlite)
 library(hexjsonwidget)
 jj=fromJSON('./example.hexjson')
 hexjsonwidget(jj)
+```
+
+```{r}
+library(jsonlite)
+library(hexjsonwidget)
+jj=fromJSON('./example-grid.hexjson')
+hexjsonwidget(jj,grid='on')
+```
+
+
+```{r}
+library(jsonlite)
+library(hexjsonwidget)
+jj=fromJSON('./example-grid.hexjson')
+hexjsonwidget(jj,grid='off')
+```
+
+
+```{r}
+library(jsonlite)
+library(hexjsonwidget)
+jj=fromJSON('./example-grid.hexjson')
+hexjsonwidget(jj)
+```
+
+
+
+# Screenshot test
+
+
+#via https://github.com/timelyportfolio/exportwidget/blob/master/Readme.md
+library(exportwidget)
+library(webshot)
+library(htmltools)
+library(magrittr)
+
+html_print(tagList(
+  hexjsonwidget(jj)
+  , export_widget( )
+  ), viewer=NULL) %>%
+  webshot( delay = 3 )
 ```
 

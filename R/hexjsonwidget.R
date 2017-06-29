@@ -5,11 +5,13 @@
 #' @import htmlwidgets
 #'
 #' @export
-hexjsonwidget <- function(jsondata, width = NULL, height = NULL, elementId = NULL) {
+hexjsonwidget <- function(jsondata,grid='off',
+                          width = NULL, height = NULL, elementId = NULL) {
 
   # forward options using x
   x = list(
-    jsondata = jsondata
+    jsondata = jsondata,
+    grid = grid
   )
 
   # create widget
