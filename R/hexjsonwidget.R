@@ -5,13 +5,19 @@
 #' @import htmlwidgets
 #'
 #' @export
-hexjsonwidget <- function(jsondata,grid='off',
+hexjsonwidget <- function(jsondata, grid='off',
+                          col_hexfill='', col_gridfill='', col_textfill='',
                           width = NULL, height = NULL, elementId = NULL) {
 
   # forward options using x
   x = list(
     jsondata = jsondata,
-    grid = grid
+    grid = grid,
+    # Colour parameters
+    # Colour in a hex col attribute is used if available
+    col_hexfill = col_hexfill,
+    col_gridfill = col_gridfill,
+    col_textfill = col_textfill
   )
 
   # create widget
