@@ -17,3 +17,10 @@ hexjsonwidget(jj)
 ````
 
 in RStudio to display the rendered example file in the RStudio viewer.
+
+Support added for grid display:
+
+````
+jj=fromJSON('./example-grid.hexjson')
+hexjsonwidget(jj,grid='on')
+````
