@@ -4,6 +4,6 @@
 		"Q0R0":{"q":0,"r":0, "col":"red", "label":"test1"},
 		"Q1R1":{"q":1,"r":1 },
 		"Q1R2":{"q":1,"r":2, "label":"test2"},
-		"Q2R3":{"q":2,"r":3, "col":"red"}
+		"Q2R3":{"q":2,"r":3, "col":"blue"}
 	}
 }
