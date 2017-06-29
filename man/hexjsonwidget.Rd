@@ -6,7 +6,7 @@
 \alias{hexjsonwidget-package}
 \title{An htmlwidget for rendering hexjson maps using d3-hexjson}
 \usage{
-hexjsonwidget(jsondata = NA, jsonpath = "", grid = "off",
+hexjsonwidget(jsondata = NA, jsonpath = NA, grid = "off",
   col_hexfill = "", col_gridfill = "", col_textfill = "", width = NULL,
   height = NULL, elementId = NULL)
 }
@@ -23,12 +23,26 @@ hexjsonwidget(jsondata = NA, jsonpath = "", grid = "off",
 
 \item{col_textfill}{Fill colour for hex text label}
 
-\item{width}{}
+\item{width}{Widget width}
 
-\item{elementId}{}
+\item{height}{Widget height}
+
+\item{elementId}{Widget element ID}
 }
 \description{
 \code{hexjsonwidget} accepts a hexJSON object or path to a hexjson file and render it as an HTMLwidget using d3-hexjson.
+}
+\details{
+If a hexJSON hexobject includes a \code{col} attribute, this will be used to colour the hex.
+If it contains a \code{label} attribute, it will be used to label the hex.
+}
+\examples{
+hexjsonwidget( fromJSON('./example.hexjson') )
+hexjsonwidget(jsonpath='./example-grid.hexjson')
+hexjsonwidget(jj, grid='on', col_gridfill='#113355', col_hexfill='#FF0000')
+hexjsonwidget(jj, grid='off', col_textfill="orange")
+hexjsonwidget(jj, col_hexfill='#bb3388')
+
 }
 \author{
 Tony Hirst (@psychemedia)

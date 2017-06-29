@@ -23,8 +23,15 @@ hexjsonwidget(jj)
 ```{r}
 library(jsonlite)
 library(hexjsonwidget)
+
+hexjsonwidget(jsonpath='./example-grid.hexjson')
+```
+
+```{r}
+library(jsonlite)
+library(hexjsonwidget)
 jj=fromJSON('./example-grid.hexjson')
-hexjsonwidget(jj,grid='on')
+hexjsonwidget(jj, grid='on', col_gridfill='#113355', col_hexfill='#FF0000')
 ```
 
 
@@ -32,7 +39,7 @@ hexjsonwidget(jj,grid='on')
 library(jsonlite)
 library(hexjsonwidget)
 jj=fromJSON('./example-grid.hexjson')
-hexjsonwidget(jj,grid='off')
+hexjsonwidget(jj, grid='off', col_textfill="orange")
 ```
 
 
@@ -40,14 +47,15 @@ hexjsonwidget(jj,grid='off')
 library(jsonlite)
 library(hexjsonwidget)
 jj=fromJSON('./example-grid.hexjson')
-hexjsonwidget(jj)
+hexjsonwidget(jj, col_hexfill='#bb3388')
 ```
 
 
 
-# Screenshot test
+## Screenshot test
 
 
+```
 #via https://github.com/timelyportfolio/exportwidget/blob/master/Readme.md
 library(exportwidget)
 library(webshot)

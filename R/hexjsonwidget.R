@@ -1,6 +1,10 @@
-#' An htmlwidget for rendering hexjson maps using d3-hexjson
+#' @title An htmlwidget for rendering hexjson maps using d3-hexjson
 #'
-#' \code{hexjsonwidget} accepts a hexJSON object or path to a hexjson file and render it as an HTMLwidget using d3-hexjson.
+#' @description \code{hexjsonwidget} accepts a hexJSON object or path to a hexjson file and render it as an HTMLwidget using d3-hexjson.
+#' 
+#' @details
+#' If a hexJSON hexobject includes a \code{col} attribute, this will be used to colour the hex.
+#' If it contains a \code{label} attribute, it will be used to label the hex.
 #' 
 #' @name hexjsonwidget
 #' @docType package
@@ -15,9 +19,16 @@
 #' @param col_hexfill Fill colour for data hex if "col" hex value not set
 #' @param col_gridfill Fill colour for grid hex 
 #' @param col_textfill Fill colour for hex text label
-#' @param width 
-#' @param height
-#' @param elementId 
+#' @param width Widget width
+#' @param height Widget height
+#' @param elementId Widget element ID
+#' 
+#' @examples
+#' hexjsonwidget( fromJSON('./example.hexjson') )
+#' hexjsonwidget(jsonpath='./example-grid.hexjson')
+#' hexjsonwidget(jj, grid='on', col_gridfill='#113355', col_hexfill='#FF0000')
+#' hexjsonwidget(jj, grid='off', col_textfill="orange")
+#' hexjsonwidget(jj, col_hexfill='#bb3388')
 #' 
 #' @export
 hexjsonwidget <- function(jsondata=NA, jsonpath=NA, grid='off',
