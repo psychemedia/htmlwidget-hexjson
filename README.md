@@ -30,7 +30,7 @@ Colour is supported in a variety of ways:
 - specify hex fill colour: `hexjsonwidget(jj, col_hexfill='#bb3388')`
 - specify grid fill colour: `hexjsonwidget(jj, grid='on', col_gridfill='#113355')`
 
-You can also add a `col` attribute to the hexJSON file. If no `col` is specified, the default fill colour will be used.
+You can also add a `col` attribute to hexes in the hexJSON file. If no `col` is specified, the default fill colour will be used.
 
 ````
 {
@@ -43,4 +43,6 @@ You can also add a `col` attribute to the hexJSON file. If no `col` is specified
 	}
 }
 ````
+
+If a hexJSON hex has a `label` attribute, this will be used to label the hex, otherwise the hex ID will be used as the label.
 

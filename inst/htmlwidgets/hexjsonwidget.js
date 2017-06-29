@@ -95,7 +95,7 @@ HTMLWidgets.widget({
         		.append("tspan")
         		.attr("text-anchor", "middle")
         		.attr("fill", col_textfill)
-        		.text(function(hex) {return hex.key;});
+        		.text(function(hex) {return hex.hasOwnProperty("label") ? hex.label : hex.key;});
 
       },
 
