@@ -7,6 +7,8 @@ Download and unzip the folder, cd into it and install with: `devtools::install()
     library(devtools)
     install_github("psychemedia/htmlwidget-hexjson")
 
+Documentation is generated automatically using `roxygen2` via the command `devtools::document()`.
+
 An example *Rmd* file is in the test folder. Or run:
 
 ````
@@ -71,6 +73,10 @@ jjx=hexjsonfromdataframe(jdf,r='row', keyid='id')
 #Use this in hexjsonwidget():
 hexjsonwidget(jjx, colour='colour')
 ```
+
+Specify the dataframe column name used to defined each hex row parameter (`r`: default `r`) and column (`q`: default `q`).
+
+To save the hexjson to a file, use a constructions of the form: `write( toJSON( jjx ), "test_out.hexjson" )`
 
 Alternatively, create the *hexjsonwidget* directly from the dataframe:
 
