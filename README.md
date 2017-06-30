@@ -1,6 +1,6 @@
 # htmlwidget-hexjson
 
-Simple R/htmlwidget for displaying hexjson maps based on Oli Hawkins' [d3-hexjson](https://github.com/olihawkins/d3-hexjson) package,  a D3 module for generating hexmaps from data in the Open Data Institute's [HexJSON format](https://odileeds.org/projects/hexmaps/hexjson.html).
+Simple R/[htmlwidget](http://www.htmlwidgets.org/) for displaying hexjson maps based on Oli Hawkins' [d3-hexjson](https://github.com/olihawkins/d3-hexjson) package,  a D3 module for generating hexmaps from data in the Open Data Institute's [HexJSON format](https://odileeds.org/projects/hexmaps/hexjson.html).
 
 Download and unzip the folder, cd into it and install with: `devtools::install()` or install directly from Github:
 
@@ -57,8 +57,8 @@ You can generate a map based on one of the base files by passing the base hexjso
 You can annotate a hexJSON file with data from a dataframe. The dataframe needs an ID column that can be used to match hexJSON hex key values. The default column expected for this purpose is `id`, but you can change it using the `keyid` parameter:
 
 ````
-df=data.frame(id=c("Q0R0","Q1R2"),colour=c('orange','#ffddbb'),label=c('','test a'))
-hexjsonwidget(jsonbase="example-grid.hexjson",data=df)
+df=data.frame(id=c("Q0R0","Q1R2"), colour=c('orange','#ffddbb'), label=c('','test a'))
+hexjsonwidget(jsonbase="example-grid.hexjson", data=df)
 ````
 
 Data from each row of the dataframe will be merged into the hexJSON hex with a key value corresponding to the value in the specified `id` column in the dataframe. (You do not need to specify a row in the dataframe for each hex.) Dataframe column names are used as the data attribute names in the hex. If a dataframe column name is the same as a hex attribute name, the original hex data for that attribute will be overwritten by the dataframe data.
@@ -66,9 +66,15 @@ Data from each row of the dataframe will be merged into the hexJSON hex with a k
 A hexJSON object can be created from a dataframe using the `hexjsonfromdataframe()` function:
 
 ```
-jdf=data.frame(id=c("Q0R0","Q1R1","Q1R2"),q=c(0,1,1),
+jdf=data.frame(id=c("Q0R0","Q1R1","Q1R2"), q=c(0,1,1),
                row=c(0,1,2), colour=c('yellow','#ddbb99','green'))
-jjx=hexjsonfromdataframe(jdf,r='row', keyid='id')
+jjx=hexjsonfromdataframe(jdf, r='row', keyid='id')
+
+### Blog Posts About the Creation of This Package
+
+- [HexJSON HTMLWidget for R, Part 1](https://blog.ouseful.info/2017/06/28/hexjson-htmlwidget-for-r-part-1/)
+- [HexJSON HTMLWidget for R, Part 2](https://blog.ouseful.info/2017/06/29/hexjson-htmlwidget-for-r-part-2/)
+- [HexJSON HTMLWidget for R, Part 3](https://blog.ouseful.info/2017/06/30/hexjson-htmlwidget-for-r-part-3/)
 
 #Use this in hexjsonwidget():
 hexjsonwidget(jjx, colour='colour')
@@ -82,7 +88,7 @@ To save the hexjson to a file, use `hexjsonwrite(df, filename)` and to read a js
 Alternatively, create the *hexjsonwidget* directly from the dataframe:
 
 ```
-hexjsonwidget(fromdataframe=jdf, r='row', keyid='key',colour='colour')
+hexjsonwidget(fromdataframe=jdf, r='row', keyid='key', colour='colour')
 ```
 
 
