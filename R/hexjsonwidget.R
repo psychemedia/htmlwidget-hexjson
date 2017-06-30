@@ -22,6 +22,8 @@
 #' @param label Name of the hex attribute used to set the hex label; set to \code{NA} to turn labels off.
 #' @param missinglabel Value to use for missing label; if set to \code{NA} (default), use hex id. If \code{label} is set to a non-existing hex atribute, and \code{missinglabel} is set to \code{NA}, the hex key will be displayed as the label in each hex. 
 #' @param grid Display a background grid in whitespace (either \code{on} or \code{off} (default)).
+#' @param r Dataframe column name used to defined a row (hex::r) when using fromdataframe
+#' @param q Dataframe column name used to defined a column (hex::q) when using fromdataframe
 #' @param col_hexfill Default fill colour for data hex if "col" hex value not set
 #' @param col_gridfill Default fill colour for grid hex 
 #' @param col_textfill Default fill colour for hex text label
@@ -45,11 +47,13 @@
 #' jjx=hexjsonfromdataframe(jdf,r='row', keyid='id')
 #' hexjsonwidget(jjx, colour='colour')
 #' 
+#' hexjsonwidget(fromdataframe=jdf, r='row', keyid='key',colour='colour')
+#' 
 #' @return an HTMLwidget object
 #' @export
 hexjsonwidget <- function(jsondata=NA, jsonpath=NA, jsonbase=NA, fromdataframe=NA,
                           data=NA, keyid='id', colour='col', label='label',
-                          layout='odd-r', row='r', column='q',
+                          layout='odd-r', r='r', q='q',
                           grid='off', labels="on", missinglabel=NA,
                           col_gridfill="#f0f0f0", col_hexfill="#b0e8f0", col_textfill="#000000",
                           width = NULL, height = NULL, elementId = NULL) {
@@ -64,7 +68,7 @@ hexjsonwidget <- function(jsondata=NA, jsonpath=NA, jsonbase=NA, fromdataframe=N
     jsondata=fromJSON(jsonpath)
   } else if (!(identical(fromdataframe,NA))) {
     jsondata=hexjsonfromdataframe(fromdataframe,
-                                  layout=layout, keyid=keyid, q=column,r=row)
+                                  layout=layout, keyid=keyid, q=q,r=r)
   } else {
     stop("One of 'jsondata', 'jsonpath', 'jsonbase' or 'fromdataframe' must be set")
   }

@@ -6,11 +6,10 @@
 \usage{
 hexjsonwidget(jsondata = NA, jsonpath = NA, jsonbase = NA,
   fromdataframe = NA, data = NA, keyid = "id", colour = "col",
-  label = "label", layout = "odd-r", row = "r", column = "q",
-  grid = "off", labels = "on", missinglabel = NA,
-  col_gridfill = "#f0f0f0", col_hexfill = "#b0e8f0",
-  col_textfill = "#000000", width = NULL, height = NULL,
-  elementId = NULL)
+  label = "label", layout = "odd-r", r = "r", q = "q", grid = "off",
+  labels = "on", missinglabel = NA, col_gridfill = "#f0f0f0",
+  col_hexfill = "#b0e8f0", col_textfill = "#000000", width = NULL,
+  height = NULL, elementId = NULL)
 }
 \arguments{
 \item{jsondata}{hexJSON object}
@@ -28,6 +27,10 @@ hexjsonwidget(jsondata = NA, jsonpath = NA, jsonbase = NA,
 \item{colour}{Name of the hex attribute used to set the hex colour; set to \code{NA} to use the default.}
 
 \item{label}{Name of the hex attribute used to set the hex label; set to \code{NA} to turn labels off.}
+
+\item{r}{Dataframe column name used to defined a row (hex::r) when using fromdataframe}
+
+\item{q}{Dataframe column name used to defined a column (hex::q) when using fromdataframe}
 
 \item{grid}{Display a background grid in whitespace (either \code{on} or \code{off} (default)).}
 
@@ -70,6 +73,8 @@ jdf=data.frame(id=c("Q0R0","Q1R1","Q1R2"),q=c(0,1,1),
 row=c(0,1,2), colour=c('yellow','#ddbb99','green'))
 jjx=hexjsonfromdataframe(jdf,r='row', keyid='id')
 hexjsonwidget(jjx, colour='colour')
+
+hexjsonwidget(fromdataframe=jdf, r='row', keyid='key',colour='colour')
 
 }
 \author{

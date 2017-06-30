@@ -69,7 +69,10 @@ hexjsonwidget(jsonbase="constituencies.hexjson", label=NA)
 
 ```{r}
 df=data.frame(id=c("Q0R0","Q1R2"),colour=c('orange','#ffddbb'),label=c('','test a'))
+hexjsondatamerge(jj,df)
+```
 
+```{r}
 hexjsonwidget(jsonbase="example-grid.hexjson",data=df,colour='colour')
 ```
 
