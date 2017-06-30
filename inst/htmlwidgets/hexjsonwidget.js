@@ -24,24 +24,20 @@ HTMLWidgets.widget({
     return {
 
       renderValue: function(x) {
-
-          hexjson = x.jsondata;
+        
+          var hexjson = x.jsondata;
 
         	// Render the hexes
         	var hexes = d3.renderHexJSON(hexjson, width, height);
 
           // colour maps - should these be handled by CSS?
-          var col_hexfill="#b0e8f0";
-          var col_gridfill="#f0f0f0";
-          var col_textfill="#000000";
-          
-          if (x.col_hexfill !=="") col_hexfill = x.col_hexfill;
-          if (x.col_gridfill !== "") col_gridfill = x.col_gridfill;
-          if (x.col_textfill !== "") col_textfill = x.col_textfill;
-          
+          var col_hexfill = x.col_hexfill;
+          var col_gridfill = x.col_gridfill;
+          var col_textfill = x.col_textfill;
+
           if (x.grid == "on") {
             
-            hexbinding="g.data"
+            hexbinding="g.data";
             
             // Create the grid hexes and render them
           	var grid = d3.getGridForHexJSON(hexjson);
@@ -85,20 +81,20 @@ HTMLWidgets.widget({
         		.attr("stroke", "white")
         		.attr("stroke-width", "2")
         		.attr("fill",function(hex) {
-        		  return hex.hasOwnProperty("col") && hex.col!=="" ? hex.col : col_hexfill;
+        		  return (x.colour_attr !== null && hex.hasOwnProperty(x.colour_attr) && hex[x.colour_attr]!=="") ? hex[x.colour_attr] : col_hexfill;
         		});
         		//.attr("fill", col_hexfill);
         
         	// Add the hex codes as labels
-        	if  (x.labels == "on") {
+        	if  (x.label_attr !== null) {
         	  hexmap
           		.append("text")
           		.append("tspan")
           		.attr("text-anchor", "middle")
           		.attr("fill", col_textfill)
           		.text(function(hex) {
-          		  var label = x.missinglabel==null ? hex.key : x.missinglabel;
-          		  label = hex.hasOwnProperty("label") ? hex.label : label;
+          		  var label = x.missinglabel===null ? hex.key : x.missinglabel;
+          		  label = hex.hasOwnProperty(x.label_attr) ? hex[x.label_attr] : label;
           		  return label;
           		});
         	}

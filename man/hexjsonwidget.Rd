@@ -4,10 +4,13 @@
 \alias{hexjsonwidget}
 \title{An htmlwidget for rendering hexjson maps using d3-hexjson}
 \usage{
-hexjsonwidget(jsondata = NA, jsonpath = NA, jsonbase = NA, data = NA,
-  dataid = "id", datacolour = "col", datalabel = "label", grid = "off",
-  labels = "on", missinglabel = NA, col_gridfill = "", col_hexfill = "",
-  col_textfill = "", width = NULL, height = NULL, elementId = NULL)
+hexjsonwidget(jsondata = NA, jsonpath = NA, jsonbase = NA,
+  fromdataframe = NA, data = NA, keyid = "id", colour = "col",
+  label = "label", layout = "odd-r", row = "r", column = "q",
+  grid = "off", labels = "on", missinglabel = NA,
+  col_gridfill = "#f0f0f0", col_hexfill = "#b0e8f0",
+  col_textfill = "#000000", width = NULL, height = NULL,
+  elementId = NULL)
 }
 \arguments{
 \item{jsondata}{hexJSON object}
@@ -16,29 +19,32 @@ hexjsonwidget(jsondata = NA, jsonpath = NA, jsonbase = NA, data = NA,
 
 \item{jsonbase}{Name of bundled hexJSON file}
 
+\item{fromdataframe}{Dataframe to be used to create a hexJSON file}
+
 \item{data}{Dataframe containing data to merge with hexjson file}
 
-\item{dataid}{Name of data column for ID info}
+\item{keyid}{Name of data column for ID info}
 
-\item{datacolour}{Name of data column for colour info}
+\item{colour}{Name of the hex attribute used to set the hex colour; set to \code{NA} to use the default.}
 
-\item{datalabel}{Name of data column for label info}
+\item{label}{Name of the hex attribute used to set the hex label; set to \code{NA} to turn labels off.}
 
 \item{grid}{Display a background grid in whitespace (either \code{on} or \code{off} (default)).}
 
-\item{labels}{Enable/Disable lables (either \code{on} (default) or \code{off})}
+\item{col_gridfill}{Default fill colour for grid hex}
 
-\item{col_gridfill}{Fill colour for grid hex}
+\item{col_hexfill}{Default fill colour for data hex if "col" hex value not set}
 
-\item{col_hexfill}{Fill colour for data hex if "col" hex value not set}
-
-\item{col_textfill}{Fill colour for hex text label}
+\item{col_textfill}{Default fill colour for hex text label}
 
 \item{width}{Widget width}
 
 \item{height}{Widget height}
 
 \item{elementId}{Widget element ID}
+}
+\value{
+an HTMLwidget object
 }
 \description{
 \code{hexjsonwidget()} accepts a hexJSON object or path to a hexjson file and render it as an HTMLwidget using d3-hexjson.
@@ -53,6 +59,15 @@ hexjsonwidget(jsonpath='./example-grid.hexjson')
 hexjsonwidget(jj, grid='on', col_gridfill='#113355', col_hexfill='#FF0000')
 hexjsonwidget(jj, grid='off', col_textfill="orange")
 hexjsonwidget(jj, col_hexfill='#bb3388')
+hexjsonwidget(jj, grid='off', col_textfill="orange",colour=NA)
+
+df=data.frame(id=c("Q0R0","Q1R2"),colour=c('orange','#ffddbb'),label=c('','test a'))
+hexjsonwidget(jsonbase="example-grid.hexjson",data=df,colour='colour')
+
+jdf=data.frame(id=c("Q0R0","Q1R1","Q1R2"),q=c(0,1,1),
+row=c(0,1,2), colour=c('yellow','#ddbb99','green'))
+jjx=hexjsonfromdataframe(jdf,r='row', keyid='id')
+hexjsonwidget(jjx, colour='colour')
 
 }
 \author{

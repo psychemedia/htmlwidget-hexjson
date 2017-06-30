@@ -34,6 +34,12 @@ jj=fromJSON('./example-grid.hexjson')
 hexjsonwidget(jj, grid='off', col_textfill="orange")
 ```
 
+
+```{r}
+jj=fromJSON('./example-grid.hexjson')
+hexjsonwidget(jj, grid='off', col_textfill="orange",colour=NA)
+```
+
 ```{r}
 jj=fromJSON('./example-grid.hexjson')
 hexjsonwidget(jj, col_hexfill='#bb3388')
@@ -57,14 +63,31 @@ hexjsonwidget(jsonbase="example-grid.hexjson",missinglabel='')
 
 ```{r}
 #Use a base datafile and diasble labels
-hexjsonwidget(jsonbase="constituencies.hexjson", labels="off")
+hexjsonwidget(jsonbase="constituencies.hexjson", label=NA)
 ```
 
 
 ```{r}
 df=data.frame(id=c("Q0R0","Q1R2"),colour=c('orange','#ffddbb'),label=c('','test a'))
-hexjsonwidget(jsonbase="example-grid.hexjson",data=df,datacolour='colour')
+
+hexjsonwidget(jsonbase="example-grid.hexjson",data=df,colour='colour')
 ```
+
+```{r}
+jdf=data.frame(key=c("Q0R0","Q1R1","Q1R2"),q=c(0,1,1),
+               row=c(0,1,2), colour=c('yellow','#ddbb99','green'))
+jdf
+```
+
+```{r}
+jjx=hexjsonfromdataframe(jdf,r='row', keyid='key')
+hexjsonwidget(jjx, colour='colour')
+```
+
+```{r}
+hexjsonwidget(fromdataframe=jdf, r='row', keyid='key',colour='colour')
+```
+
 
 ## Screenshot test
 

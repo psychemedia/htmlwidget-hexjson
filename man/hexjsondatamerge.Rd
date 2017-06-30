@@ -4,19 +4,17 @@
 \alias{hexjsondatamerge}
 \title{Annotate a hexjson file}
 \usage{
-hexjsondatamerge(jsondata, customdata, dataid = "id", datacolour = "col",
-  datalabel = "label")
+hexjsondatamerge(jsondata, customdata, keyid = "id")
 }
 \arguments{
 \item{jsondata}{hexJSON object}
 
 \item{customdata}{Dataframe containing data to merge with hexjson file}
 
-\item{dataid}{Name of \code{customdata} column for ID info}
-
-\item{datacolour}{Name of \code{customdata} column for colour info}
-
-\item{datalabel}{Name of \code{customdata} column for label info}
+\item{keyid}{Name of \code{customdata} column for ID info}
+}
+\value{
+a hexjson (JSON) object
 }
 \description{
 Annotate a hexjson file
