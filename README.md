@@ -76,7 +76,8 @@ hexjsonwidget(jjx, colour='colour')
 
 Specify the dataframe column name used to defined each hex row parameter (`r`: default `r`) and column (`q`: default `q`).
 
-To save the hexjson to a file, use a constructions of the form: `write( toJSON( jjx ), "test_out.hexjson" )`
+To save the hexjson to a file, use `hexjsonwrite(df, filename)` and to read a json/hexjson file into a hexjson object use `hexjsonread(filename)`.
+
 
 Alternatively, create the *hexjsonwidget* directly from the dataframe:
 
