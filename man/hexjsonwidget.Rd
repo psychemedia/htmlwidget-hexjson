@@ -31,6 +31,8 @@ hexjsonwidget(jsondata = NA, jsonpath = NA, jsonbase = NA,
 
 \item{grid}{Display a background grid in whitespace (either \code{on} or \code{off} (default)).}
 
+\item{missinglabel}{Value to use for missing label; if set to \code{NA} (default), use hex id. If \code{label} is set to a non-existing hex atribute, and \code{missinglabel} is set to \code{NA}, the hex key will be displayed as the label in each hex.}
+
 \item{col_gridfill}{Default fill colour for grid hex}
 
 \item{col_hexfill}{Default fill colour for data hex if "col" hex value not set}

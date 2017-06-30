@@ -20,6 +20,7 @@
 #' @param keyid Name of data column for ID info
 #' @param colour Name of the hex attribute used to set the hex colour; set to \code{NA} to use the default.
 #' @param label Name of the hex attribute used to set the hex label; set to \code{NA} to turn labels off.
+#' @param missinglabel Value to use for missing label; if set to \code{NA} (default), use hex id. If \code{label} is set to a non-existing hex atribute, and \code{missinglabel} is set to \code{NA}, the hex key will be displayed as the label in each hex. 
 #' @param grid Display a background grid in whitespace (either \code{on} or \code{off} (default)).
 #' @param col_hexfill Default fill colour for data hex if "col" hex value not set
 #' @param col_gridfill Default fill colour for grid hex 
@@ -146,7 +147,7 @@ hexjsonbasefiles <- function(){
 #' 
 #' @param df Dataframe to convert to hexjson
 #' @param layout Can be one of \code{odd-r} (pointy-topped, default), \code{even-r} (pointy-topped), \code{odd-q} (flat-topped), \code{even-q} (flat-topped).
-#' @param keyid The coloumn specifying the hex identifier/key (default is \code{id}).
+#' @param keyid The column specifying the hex identifier/key (default is \code{id}).
 #' @param q The column specifying the hexJSON columns (default is \code{q}).
 #' @param r The column specifying the hexJSON rows (default is \code{r}).
 #' @return a hexjson (JSON) object

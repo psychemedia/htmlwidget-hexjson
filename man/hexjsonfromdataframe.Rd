@@ -12,7 +12,7 @@ hexjsonfromdataframe(df, layout = "odd-r", keyid = "id", q = "q",
 
 \item{layout}{Can be one of \code{odd-r} (pointy-topped, default), \code{even-r} (pointy-topped), \code{odd-q} (flat-topped), \code{even-q} (flat-topped).}
 
-\item{keyid}{The coloumn specifying the hex identifier/key (default is \code{id}).}
+\item{keyid}{The column specifying the hex identifier/key (default is \code{id}).}
 
 \item{q}{The column specifying the hexJSON columns (default is \code{q}).}
 
