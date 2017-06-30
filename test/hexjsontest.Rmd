@@ -30,23 +30,20 @@ hexjsonwidget(jsonpath='./example-grid.hexjson',
 ```
 
 ```{r}
-jj=fromJSON('./example-grid.hexjson')
+jj=hexjsonread('./example-grid.hexjson')
 hexjsonwidget(jj, grid='off', col_textfill="orange")
 ```
 
 
 ```{r}
-jj=fromJSON('./example-grid.hexjson')
 hexjsonwidget(jj, grid='off', col_textfill="orange",colour=NA)
 ```
 
 ```{r}
-jj=fromJSON('./example-grid.hexjson')
 hexjsonwidget(jj, col_hexfill='#bb3388')
 ```
 
 ```{r}
-jj=fromJSON('./example-grid.hexjson')
 hexjsonwidget(jj,grid="on", col_hexfill='#bb3388',  col_textfill="white")
 ```
 
@@ -58,7 +55,7 @@ hexjsonbasefiles()
 
 ```{r}
 #Use a base datafile
-hexjsonwidget(jsonbase="example-grid.hexjson",missinglabel='')
+hexjsonwidget(jsonbase="example-grid.hexjson", missinglabel='')
 ```
 
 ```{r}
@@ -68,27 +65,34 @@ hexjsonwidget(jsonbase="constituencies.hexjson", label=NA)
 
 
 ```{r}
-df=data.frame(id=c("Q0R0","Q1R2"),colour=c('orange','#ffddbb'),label=c('','test a'))
+df=data.frame(id=c("Q0R0","Q1R2"),colour=c('orange','#ffddbb'), label=c('','test a'))
 hexjsondatamerge(jj,df)
 ```
 
 ```{r}
-hexjsonwidget(jsonbase="example-grid.hexjson",data=df,colour='colour')
+hexjsonwidget(jsonbase="example-grid.hexjson", data=df,colour='colour')
 ```
 
 ```{r}
-jdf=data.frame(key=c("Q0R0","Q1R1","Q1R2"),q=c(0,1,1),
+jdf=data.frame(key=c("Q0R0","Q1R1","Q1R2"), q=c(0,1,1),
                row=c(0,1,2), colour=c('yellow','#ddbb99','green'))
 jdf
 ```
 
 ```{r}
-jjx=hexjsonfromdataframe(jdf,r='row', keyid='key')
+jjx=hexjsonfromdataframe(jdf, r='row', keyid='key')
 hexjsonwidget(jjx, colour='colour')
 ```
 
 ```{r}
-hexjsonwidget(fromdataframe=jdf, r='row', keyid='key',colour='colour')
+testfn='./testme1.hexjson'
+hexjsonwrite(jjx, testfn)
+jjx2=hexjsonread(testfn)
+hexjsonwidget(jjx2, colour='colour')
+```
+
+```{r}
+hexjsonwidget(fromdataframe=jdf, r='row', keyid='key', colour='colour')
 ```
 
 

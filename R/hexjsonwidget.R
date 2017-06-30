@@ -61,11 +61,11 @@ hexjsonwidget <- function(jsondata=NA, jsonpath=NA, jsonbase=NA, fromdataframe=N
   if (!(identical(jsondata, NA))) {
     jsondata=jsondata
   } else if (!(identical(jsonpath, NA))) {
-    jsondata=fromJSON(jsonpath)
+    jsondata=hexjsonread(jsonpath)
   } else if (!(identical(jsonbase,NA))) { 
     #Adding data to packages - http://r-pkgs.had.co.nz/data.html
     jsonpath=system.file("extdata", jsonbase, package = "hexjsonwidget")
-    jsondata=fromJSON(jsonpath)
+    jsondata=hexjsonread(jsonpath)
   } else if (!(identical(fromdataframe,NA))) {
     jsondata=hexjsonfromdataframe(fromdataframe,
                                   layout=layout, keyid=keyid, q=q,r=r)
@@ -100,6 +100,33 @@ hexjsonwidget <- function(jsondata=NA, jsonpath=NA, jsonbase=NA, fromdataframe=N
     package = 'hexjsonwidget',
     elementId = elementId
   )
+}
+
+#' Read hexjson file
+#' 
+#' @name hexjsonread
+#' @author Tony Hirst (@@psychemedia)
+#'
+#' @import jsonlite
+#' 
+#' @param jsonpath path to a hexjson file 
+#' @return a hexjson object
+#' @export
+hexjsonread <- function(jsonpath){
+  fromJSON(jsonpath)
+}
+
+#' Write hexjson file from a hexjson object
+#' 
+#' @name hexjsonwrite
+#' @author Tony Hirst (@@psychemedia)
+#'
+#' @import jsonlite
+#' 
+#' @param jsondata hexJSON object 
+#' @export
+hexjsonwrite <- function(jsondata, outfilename){
+  write( toJSON( jsondata ), outfilename )
 }
 
 #' Annotate a hexjson file
