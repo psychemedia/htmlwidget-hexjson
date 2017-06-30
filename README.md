@@ -46,3 +46,6 @@ You can also add a `col` attribute to hexes in the hexJSON file. If no `col` is 
 
 If a hexJSON hex has a `label` attribute, this will be used to label the hex, otherwise the hex ID will be used as the label.
 
+Several hexjson files are bundled as part of the package. List the available hexjson files using the command: `hexjsonbasefiles()`
+
+You can generate a map based on one of the base files by passing the base hexjson filename as the value for the `jsonbase` parameter: `hexjsonwidget(jsonbase="example-grid.hexjson")`

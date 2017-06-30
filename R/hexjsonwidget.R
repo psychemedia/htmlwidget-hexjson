@@ -31,14 +31,19 @@
 #' hexjsonwidget(jj, col_hexfill='#bb3388')
 #' 
 #' @export
-hexjsonwidget <- function(jsondata=NA, jsonpath=NA, grid='off',
-                          col_hexfill='', col_gridfill='', col_textfill='',
+hexjsonwidget <- function(jsondata=NA, jsonpath=NA, jsonbase=NA,
+                          grid='off', col_gridfill='',
+                          col_hexfill='', col_textfill='',
                           width = NULL, height = NULL, elementId = NULL) {
 
   if (identical(jsondata, NA)) {
-    if  (identical(jsonpath, NA)) {
-      stop("Either 'jsondata' or 'jsonpath' must be set")
-    } else {
+    if  (identical(jsonpath, NA) && identical(jsonbase, NA)) {
+      stop("Either 'jsondata', 'jsonpath' or 'jsonbase' must be set")
+    } else if (identical(jsonbase, NA)) {
+      jsondata=fromJSON(jsonpath)
+    } else { 
+      #Adding data to packages - http://r-pkgs.had.co.nz/data.html
+      jsonpath=system.file("extdata", jsonbase, package = "hexjsonwidget")
       jsondata=fromJSON(jsonpath)
     }
   }
@@ -64,6 +69,22 @@ hexjsonwidget <- function(jsondata=NA, jsonpath=NA, grid='off',
     elementId = elementId
   )
 }
+
+#' List base hexjson files
+#'
+#' \code{hexjsonbasefiles} lists the hexjson files available as part of the package.
+#' 
+#' The files are stored in the \code{extdata/} directory in the package (\code{inst/extadata} in the original source code).
+#' 
+#' To use one of the base files, pass the filename as the \code{jsonbase} parameter value when calling \code{hexjsonwidget}.
+#' 
+#' @name hexjsonbasefiles
+#' 
+#' @export
+hexjsonbasefiles <- function(){
+  list.files(system.file("extdata", package = "hexjsonwidget"))
+}
+
 
 #' Shiny bindings for hexjsonwidget
 #'

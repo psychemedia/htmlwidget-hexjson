@@ -6,8 +6,8 @@
 \alias{hexjsonwidget-package}
 \title{An htmlwidget for rendering hexjson maps using d3-hexjson}
 \usage{
-hexjsonwidget(jsondata = NA, jsonpath = NA, grid = "off",
-  col_hexfill = "", col_gridfill = "", col_textfill = "", width = NULL,
+hexjsonwidget(jsondata = NA, jsonpath = NA, jsonbase = NA, grid = "off",
+  col_gridfill = "", col_hexfill = "", col_textfill = "", width = NULL,
   height = NULL, elementId = NULL)
 }
 \arguments{
@@ -17,9 +17,9 @@ hexjsonwidget(jsondata = NA, jsonpath = NA, grid = "off",
 
 \item{grid}{Display a background grid in whitespace (either \code{on} or \code{off} (default)).}
 
-\item{col_hexfill}{Fill colour for data hex if "col" hex value not set}
-
 \item{col_gridfill}{Fill colour for grid hex}
+
+\item{col_hexfill}{Fill colour for data hex if "col" hex value not set}
 
 \item{col_textfill}{Fill colour for hex text label}
 

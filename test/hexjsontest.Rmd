@@ -21,35 +21,39 @@ hexjsonwidget(jj)
 ```
 
 ```{r}
-library(jsonlite)
-library(hexjsonwidget)
-
 hexjsonwidget(jsonpath='./example-grid.hexjson')
 ```
 
 ```{r}
-library(jsonlite)
-library(hexjsonwidget)
-jj=fromJSON('./example-grid.hexjson')
-hexjsonwidget(jj, grid='on', col_gridfill='#113355', col_hexfill='#FF0000')
+hexjsonwidget(jsonpath='./example-grid.hexjson', 
+              grid='on', col_gridfill='#113355', col_hexfill='#FF0000')
 ```
 
-
 ```{r}
-library(jsonlite)
-library(hexjsonwidget)
 jj=fromJSON('./example-grid.hexjson')
 hexjsonwidget(jj, grid='off', col_textfill="orange")
 ```
 
-
 ```{r}
-library(jsonlite)
-library(hexjsonwidget)
 jj=fromJSON('./example-grid.hexjson')
 hexjsonwidget(jj, col_hexfill='#bb3388')
 ```
 
+```{r}
+jj=fromJSON('./example-grid.hexjson')
+hexjsonwidget(jj,grid="on", col_hexfill='#bb3388',  col_textfill="white")
+```
+
+
+```{r}
+#List available data files
+hexjsonbasefiles()
+```
+
+```{r}
+#Use a base datafile
+hexjsonwidget(jsonbase="example-grid.hexjson")
+```
 
 
 ## Screenshot test
