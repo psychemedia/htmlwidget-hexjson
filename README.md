@@ -70,12 +70,6 @@ jdf=data.frame(id=c("Q0R0","Q1R1","Q1R2"), q=c(0,1,1),
                row=c(0,1,2), colour=c('yellow','#ddbb99','green'))
 jjx=hexjsonfromdataframe(jdf, r='row', keyid='id')
 
-### Blog Posts About the Creation of This Package
-
-- [HexJSON HTMLWidget for R, Part 1](https://blog.ouseful.info/2017/06/28/hexjson-htmlwidget-for-r-part-1/)
-- [HexJSON HTMLWidget for R, Part 2](https://blog.ouseful.info/2017/06/29/hexjson-htmlwidget-for-r-part-2/)
-- [HexJSON HTMLWidget for R, Part 3](https://blog.ouseful.info/2017/06/30/hexjson-htmlwidget-for-r-part-3/)
-
 #Use this in hexjsonwidget():
 hexjsonwidget(jjx, colour='colour')
 ```
@@ -91,6 +85,11 @@ Alternatively, create the *hexjsonwidget* directly from the dataframe:
 hexjsonwidget(fromdataframe=jdf, r='row', keyid='key', colour='colour')
 ```
 
+### Blog Posts About the Creation of This Package
+
+- [HexJSON HTMLWidget for R, Part 1](https://blog.ouseful.info/2017/06/28/hexjson-htmlwidget-for-r-part-1/)
+- [HexJSON HTMLWidget for R, Part 2](https://blog.ouseful.info/2017/06/29/hexjson-htmlwidget-for-r-part-2/)
+- [HexJSON HTMLWidget for R, Part 3](https://blog.ouseful.info/2017/06/30/hexjson-htmlwidget-for-r-part-3/)
 
 
 
