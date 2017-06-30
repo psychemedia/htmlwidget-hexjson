@@ -52,12 +52,18 @@ hexjsonbasefiles()
 
 ```{r}
 #Use a base datafile
-hexjsonwidget(jsonbase="example-grid.hexjson")
+hexjsonwidget(jsonbase="example-grid.hexjson",missinglabel='')
 ```
 
 ```{r}
 #Use a base datafile and diasble labels
 hexjsonwidget(jsonbase="constituencies.hexjson", labels="off")
+```
+
+
+```{r}
+df=data.frame(id=c("Q0R0","Q1R2"),colour=c('orange','#ffddbb'),label=c('','test a'))
+hexjsonwidget(jsonbase="example-grid.hexjson",data=df,datacolour='colour')
 ```
 
 ## Screenshot test
