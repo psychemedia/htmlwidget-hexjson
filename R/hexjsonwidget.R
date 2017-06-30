@@ -1,13 +1,12 @@
 #' @title An htmlwidget for rendering hexjson maps using d3-hexjson
 #'
-#' @description \code{hexjsonwidget} accepts a hexJSON object or path to a hexjson file and render it as an HTMLwidget using d3-hexjson.
+#' @description \code{hexjsonwidget()} accepts a hexJSON object or path to a hexjson file and render it as an HTMLwidget using d3-hexjson.
 #' 
 #' @details
 #' If a hexJSON hexobject includes a \code{col} attribute, this will be used to colour the hex.
 #' If it contains a \code{label} attribute, it will be used to label the hex.
 #' 
 #' @name hexjsonwidget
-#' @docType package
 #' @author Tony Hirst (@@psychemedia)
 #'
 #' @import htmlwidgets
@@ -16,6 +15,10 @@
 #' @param jsondata hexJSON object
 #' @param jsonpath Path to hexJSON file
 #' @param jsonbase Name of bundled hexJSON file
+#' @param data Dataframe containing data to merge with hexjson file
+#' @param dataid Name of data column for ID info
+#' @param datacolour Name of data column for colour info
+#' @param datalabel Name of data column for label info
 #' @param grid Display a background grid in whitespace (either \code{on} or \code{off} (default)).
 #' @param labels Enable/Disable lables (either \code{on} (default) or \code{off})
 #' @param col_hexfill Fill colour for data hex if "col" hex value not set
@@ -34,7 +37,8 @@
 #' 
 #' @export
 hexjsonwidget <- function(jsondata=NA, jsonpath=NA, jsonbase=NA,
-                          grid='off', labels="on",
+                          data=NA, dataid='id', datacolour='col', datalabel='label',
+                          grid='off', labels="on", missinglabel=NA,
                           col_gridfill='', col_hexfill='', col_textfill='',
                           width = NULL, height = NULL, elementId = NULL) {
 
@@ -50,11 +54,16 @@ hexjsonwidget <- function(jsondata=NA, jsonpath=NA, jsonbase=NA,
     }
   }
   
+  if (!is.na(data)) {
+    jsondata = hexjsondatamerge(jsondata, data, dataid, datacolour, datalabel )
+  }
+  
   # forward options using x
   x = list(
     jsondata = jsondata,
     grid = grid,
     labels = labels,
+    missinglabel = missinglabel,
     # Colour parameters
     # Colour in a hex col attribute is used if available
     col_hexfill = col_hexfill,
@@ -72,6 +81,34 @@ hexjsonwidget <- function(jsondata=NA, jsonpath=NA, jsonbase=NA,
     elementId = elementId
   )
 }
+
+#' Annotate a hexjson file
+#' 
+#' @name hexjsonwidget
+#' @author Tony Hirst (@@psychemedia)
+#'
+#' @import rlist
+#' 
+#' @param jsondata hexJSON object 
+#' @param customdata Dataframe containing data to merge with hexjson file
+#' @param dataid Name of \code{customdata} column for ID info
+#' @param datacolour Name of \code{customdata} column for colour info
+#' @param datalabel Name of \code{customdata} column for label info
+#' @export
+hexjsondatamerge <- function(jsondata, customdata,
+                             dataid='id', datacolour='col', datalabel='label' ) {
+
+  colnames(customdata)[colnames(customdata) == dataid] = 'id'
+  colnames(customdata)[colnames(customdata) == datacolour] = 'col'
+  colnames(customdata)[colnames(customdata) == datalabel] = 'label'
+  rownames(customdata) = customdata[[dataid]]
+  customdata[[dataid]] = NULL
+  
+  ll=lapply(split(customdata, rownames(customdata)), as.list)
+  jsondata$hexes = list.merge(jsondata$hexes, ll)
+  jsondata
+}
+
 
 #' List base hexjson files
 #'

@@ -49,3 +49,12 @@ If a hexJSON hex has a `label` attribute, this will be used to label the hex, ot
 Several hexjson files are bundled as part of the package. List the available hexjson files using the command: `hexjsonbasefiles()`
 
 You can generate a map based on one of the base files by passing the base hexjson filename as the value for the `jsonbase` parameter: `hexjsonwidget(jsonbase="example-grid.hexjson")`
+
+You can annotate a hexJSON file with data from a dataframe. The dataframe needs an ID column that can be used to match hexJSON hex key values. The default column expected for this purpose is `id`, but you can change it using the `dataid` parameter. Distinguished column names for hex colour (default: `col`) and hex label (default: `label`) can also be specified using the `datacolour` and `datalabel` parameters respectively:
+
+````
+df=data.frame(id=c("Q0R0","Q1R2"),colour=c('orange','#ffddbb'),label=c('','test a'))
+hexjsonwidget(jsonbase="example-grid.hexjson",data=df,datacolour='colour')
+````
+
+Data from each row of the dataframe will be merged into the hexJSON hex with a key value corresponding to the value in the specified `id` column in the dataframe. (You do not need to specify a row in the dataframe for each hex.) Dataframe column names are used as the data attribute names in the hex. If a dataframe column name is the same as a hex attribute name, the original hex data for that attribute will be overwritten by the dataframe data.

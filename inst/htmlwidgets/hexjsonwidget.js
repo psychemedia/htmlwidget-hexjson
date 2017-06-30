@@ -97,7 +97,9 @@ HTMLWidgets.widget({
           		.attr("text-anchor", "middle")
           		.attr("fill", col_textfill)
           		.text(function(hex) {
-          		  return hex.hasOwnProperty("label") ? hex.label : hex.key;
+          		  var label = x.missinglabel==null ? hex.key : x.missinglabel;
+          		  label = hex.hasOwnProperty("label") ? hex.label : label;
+          		  return label;
           		});
         	}
 
