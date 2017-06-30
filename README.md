@@ -55,7 +55,7 @@ You can generate a map based on one of the base files by passing the base hexjso
 You can annotate a hexJSON file with data from a dataframe. The dataframe needs an ID column that can be used to match hexJSON hex key values. The default column expected for this purpose is `id`, but you can change it using the `keyid` parameter:
 
 ````
-df=data.frame(keyid=c("Q0R0","Q1R2"),colour=c('orange','#ffddbb'),label=c('','test a'))
+df=data.frame(id=c("Q0R0","Q1R2"),colour=c('orange','#ffddbb'),label=c('','test a'))
 hexjsonwidget(jsonbase="example-grid.hexjson",data=df)
 ````
 
