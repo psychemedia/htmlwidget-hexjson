@@ -55,6 +55,10 @@ hexjsonbasefiles()
 hexjsonwidget(jsonbase="example-grid.hexjson")
 ```
 
+```{r}
+#Use a base datafile and diasble labels
+hexjsonwidget(jsonbase="constituencies.hexjson", labels="off")
+```
 
 ## Screenshot test
 

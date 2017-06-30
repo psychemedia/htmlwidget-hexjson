@@ -15,7 +15,9 @@
 #'
 #' @param jsondata hexJSON object
 #' @param jsonpath Path to hexJSON file
+#' @param jsonbase Name of bundled hexJSON file
 #' @param grid Display a background grid in whitespace (either \code{on} or \code{off} (default)).
+#' @param labels Enable/Disable lables (either \code{on} (default) or \code{off})
 #' @param col_hexfill Fill colour for data hex if "col" hex value not set
 #' @param col_gridfill Fill colour for grid hex 
 #' @param col_textfill Fill colour for hex text label
@@ -32,8 +34,8 @@
 #' 
 #' @export
 hexjsonwidget <- function(jsondata=NA, jsonpath=NA, jsonbase=NA,
-                          grid='off', col_gridfill='',
-                          col_hexfill='', col_textfill='',
+                          grid='off', labels="on",
+                          col_gridfill='', col_hexfill='', col_textfill='',
                           width = NULL, height = NULL, elementId = NULL) {
 
   if (identical(jsondata, NA)) {
@@ -52,6 +54,7 @@ hexjsonwidget <- function(jsondata=NA, jsonpath=NA, jsonbase=NA,
   x = list(
     jsondata = jsondata,
     grid = grid,
+    labels = labels,
     # Colour parameters
     # Colour in a hex col attribute is used if available
     col_hexfill = col_hexfill,

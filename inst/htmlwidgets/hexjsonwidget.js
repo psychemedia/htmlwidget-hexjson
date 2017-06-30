@@ -19,7 +19,7 @@ HTMLWidgets.widget({
         		.append("g")
         		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
         		
-    var hexbinding="g"
+    var hexbinding="g";
     
     return {
 
@@ -90,12 +90,16 @@ HTMLWidgets.widget({
         		//.attr("fill", col_hexfill);
         
         	// Add the hex codes as labels
-        	hexmap
-        		.append("text")
-        		.append("tspan")
-        		.attr("text-anchor", "middle")
-        		.attr("fill", col_textfill)
-        		.text(function(hex) {return hex.hasOwnProperty("label") ? hex.label : hex.key;});
+        	if  (x.labels == "on") {
+        	  hexmap
+          		.append("text")
+          		.append("tspan")
+          		.attr("text-anchor", "middle")
+          		.attr("fill", col_textfill)
+          		.text(function(hex) {
+          		  return hex.hasOwnProperty("label") ? hex.label : hex.key;
+          		});
+        	}
 
       },
 

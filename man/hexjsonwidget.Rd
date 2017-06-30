@@ -7,15 +7,19 @@
 \title{An htmlwidget for rendering hexjson maps using d3-hexjson}
 \usage{
 hexjsonwidget(jsondata = NA, jsonpath = NA, jsonbase = NA, grid = "off",
-  col_gridfill = "", col_hexfill = "", col_textfill = "", width = NULL,
-  height = NULL, elementId = NULL)
+  labels = "on", col_gridfill = "", col_hexfill = "", col_textfill = "",
+  width = NULL, height = NULL, elementId = NULL)
 }
 \arguments{
 \item{jsondata}{hexJSON object}
 
 \item{jsonpath}{Path to hexJSON file}
 
+\item{jsonbase}{Name of bundled hexJSON file}
+
 \item{grid}{Display a background grid in whitespace (either \code{on} or \code{off} (default)).}
+
+\item{labels}{Enable/Disable lables (either \code{on} (default) or \code{off})}
 
 \item{col_gridfill}{Fill colour for grid hex}
 

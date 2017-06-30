@@ -44,7 +44,7 @@ You can also add a `col` attribute to hexes in the hexJSON file. If no `col` is 
 }
 ````
 
-If a hexJSON hex has a `label` attribute, this will be used to label the hex, otherwise the hex ID will be used as the label.
+If a hexJSON hex has a `label` attribute, this will be used to label the hex, otherwise the hex ID will be used as the label. Passing `labels="off"` to `hexjsonwidget()` will turn off labels (default is `"on"`).
 
 Several hexjson files are bundled as part of the package. List the available hexjson files using the command: `hexjsonbasefiles()`
 
